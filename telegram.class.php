@@ -111,11 +111,11 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	  * @param text $description Text of the message to be sent. Required.
 	  * @param parse_mode $description Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message. Optional.
 	  * @param disable_web_page_preview $descriptionDisables link previews for links in this message. Optional.
-	  * @param disable_notification $description TSends the message silently. Optional.
+	  * @param disable_notification $description Sends the message silently. Optional.
 	  * @param reply_to_message_id $description If the message is a reply, ID of the original message. Optional.
 	  * @param reply_markup $description Additional interface options. Optional. --- TODO : Agregar esta funcionalidad.
 	  *
-	  * @return Array of Update objects
+	  * @return Message object
 	  */
 	public function sendMessage($chat_id, $text, $parse_mode = '', $disable_web_page_preview = false, $disable_notification = false, $reply_to_message_id = 0){
 		$array = array('chat_id' => $chat_id, 'text' => $text);
@@ -126,5 +126,21 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 		if($reply_to_message_id) $array['reply_to_message_id'] = $reply_to_message_id;
 		
 		return $this->POST('sendMessage', $array);
+	}
+	
+	/**
+	  * Use this method to forward messages of any kind. On success, the sent Message is returned.
+	  *
+	  * @since 1.0
+	  *
+	  * @param chat_id $description Unique identifier for the target chat or username of the target channel (in the format @channelusername). Required.
+	  * @param from_chat_id $description Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername). Required.
+	  * @param disable_notification $description Sends the message silently. Optional.
+	  * @param message_id $description Unique message identifier. Optional.
+	  *
+	  * @return Message object
+	  */
+	public function forwardMessage($chat_id, $from_chat_id, $message_id){
+		return $this->POST('forwardMessage', array('chat_id' => $chat_id, 'from_chat_id' => $from_chat_id, 'message_id' => $message_id));
 	}
 }
