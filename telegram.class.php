@@ -70,6 +70,7 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	
 	/**
 	  * A simple method for testing your bot's auth token. Requires no parameters. Returns basic information about the bot in form of a User object.
+	  *
 	  * @since 1.0
 	  *
 	  * @return User Object
@@ -81,16 +82,21 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	/**
 	  * Use this method to receive incoming updates using long polling (wiki).
 	  * https://en.wikipedia.org/wiki/Push_technology#Long_polling
+	  *
 	  * @since 1.0
+	  *
+	  * @param offset $description Identifier of the first update to be returned. Optional.
+	  * @param limit $description Limits the number of updates to be retrieved. Optional.
+	  * @param timeout $description Timeout in seconds for long polling. Optional.
 	  *
 	  * @return Array of Update objects
 	  */
-	public function getUpdates($offset = 0){
+	public function getUpdates($offset = 0, $limit = 100, $timeout = 0){
 		$data = array();
 		
-		if($offset > 0){
-			$data['offset'] = $offset;
-		}
+		if($offset > 0)		$data['offset'] = $offset;
+		if($limit != 100)	$data['limit'] = $limit;
+		if($timeout > 0)	$data['timeout'] = $timeout;
 		
 		return $this->POST('getUpdates', $data);
 	}
