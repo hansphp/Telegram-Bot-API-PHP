@@ -18,7 +18,15 @@ $BOT->debugOn();
 $result = $BOT->getMe();
 print_r($result);
 
-$result = $BOT->getUpdates();
+$result = $BOT->getUpdates(0, 1);
+echo '<pre>';
+print_r($result);
+echo '</pre>';
+
+/*
+* The literal 3307982, its example.
+*/
+$result = $BOT->sendMessage(3307982, 'Hola mundo!');
 echo '<pre>';
 print_r($result);
 echo '</pre>';
