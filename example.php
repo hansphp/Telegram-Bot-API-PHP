@@ -19,4 +19,6 @@ $result = $BOT->getMe();
 print_r($result);
 
 $result = $BOT->getUpdates();
+echo '<pre>';
 print_r($result);
+echo '</pre>';
