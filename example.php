@@ -30,3 +30,9 @@ $result3 = $BOT->sendMessage($result2->result[0]->message->chat->id, 'Hola mundo
 echo '<pre>';
 print_r($result3);
 echo '</pre>';
+
+
+$result4 = $BOT->sendPhoto($result2->result[0]->message->chat->id, 'logoPHP.png');
+echo '<pre>';
+print_r($result4);
+echo '</pre>';

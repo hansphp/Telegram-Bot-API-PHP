@@ -143,4 +143,9 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	public function forwardMessage($chat_id, $from_chat_id, $message_id){
 		return $this->POST('forwardMessage', array('chat_id' => $chat_id, 'from_chat_id' => $from_chat_id, 'message_id' => $message_id));
 	}
+	
+	public function sendPhoto($chat_id, $file){
+		$this->upload("/bot{$this->token}/sendPhoto", array('photo'=> $file), array('chat_id'=> $chat_id));
+		return json_decode($this->RESPONSE);
+	}
 }
