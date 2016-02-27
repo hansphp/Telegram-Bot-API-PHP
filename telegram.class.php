@@ -42,4 +42,25 @@ SOFTWARE.
 
 class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	
+	protected $token;
+	
+	function __construct($token)
+	{
+		$this->setSocket();
+		$this->token = $token;
+	}
+	
+	protected function setSocket(){
+		parent::__construct('api.telegram.org', 443);
+	}
+	
+	public function GET($method = 'getMe', $headers = ''){ 
+		parent::GET("/bot{$this->token}/{$method}", $headers);
+		return json_decode($this->RESPONSE);
+	}
+	
+	/* Metodos de Telegram */
+	public function getMe(){
+		return $this->GET('getMe');
+	}
 }
