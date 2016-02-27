@@ -117,10 +117,10 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	  *
 	  * @return Array of Update objects
 	  */
-	public function sendMessage($chat_id, $text, $parse_mode = 'Markdown', $disable_web_page_preview = false, $disable_notification = false, $reply_to_message_id = 0){
+	public function sendMessage($chat_id, $text, $parse_mode = '', $disable_web_page_preview = false, $disable_notification = false, $reply_to_message_id = 0){
 		$array = array('chat_id' => $chat_id, 'text' => $text);
 		
-		$array['parse_mode'] = $parse_mode;
+		if(strlen($parse_mode) > 0) $array['parse_mode'] = $parse_mode;
 		if($disable_web_page_preview) $array['disable_web_page_preview'] = 'true';
 		if($disable_notification) $array['disable_notification'] = 'true';
 		if($reply_to_message_id) $array['reply_to_message_id'] = $reply_to_message_id;
