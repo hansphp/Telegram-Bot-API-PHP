@@ -1,5 +1,6 @@
-# Built application files
-*.apk
+# Se ignora archivo de configuración
+config.php
+
 *.ap_
 
 # Files for the Dalvik VM
