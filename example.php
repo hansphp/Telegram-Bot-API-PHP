@@ -16,5 +16,7 @@ $BOT = new H_TELEGRAM_BOT(TELEGRAM_TOKEN);
 $BOT->debugOn();
 
 $result = $BOT->getMe();
+print_r($result);
 
+$result = $BOT->getUpdates();
 print_r($result);

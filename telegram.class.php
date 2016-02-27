@@ -59,8 +59,21 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 		return json_decode($this->RESPONSE);
 	}
 	
+	public function POST($method = '', $postdata = '', $headers = ''){
+		parent::POST("/bot{$this->token}/{$method}", $postdata, $headers);
+		return json_decode($this->RESPONSE);
+	}
+	
 	/* Metodos de Telegram */
 	public function getMe(){
 		return $this->GET('getMe');
+	}
+	
+	public function getUpdates($offset = 0){
+		$data = array();
+		if($offset > 0){
+			$data['offset'] = $offset;
+		}
+		return $this->POST('getUpdates', $data);
 	}
 }
