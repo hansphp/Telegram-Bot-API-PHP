@@ -112,13 +112,16 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	  * @param disable_web_page_preview $descriptionDisables link previews for links in this message. Optional.
 	  * @param disable_notification $description TSends the message silently. Optional.
 	  * @param reply_to_message_id $description If the message is a reply, ID of the original message. Optional.
-	  * @param reply_markup $description Additional interface options. Optional.
+	  * @param reply_markup $description Additional interface options. Optional. --- TODO : Agregar esta funcionalidad.
 	  *
 	  * @return Array of Update objects
 	  */
-	public function sendMessage($chat_id, $text, $reply_to_message_id = 0){
+	public function sendMessage($chat_id, $text, $parse_mode = 'Markdown', $disable_web_page_preview = false, $disable_notification = false, $reply_to_message_id = 0){
 		$array = array('chat_id' => $chat_id, 'text' => $text);
 		
+		$array['parse_mode'] = $parse_mode;
+		if($disable_web_page_preview) $array['disable_web_page_preview'] = 'true';
+		if($disable_notification) $array['disable_notification'] = 'true';
 		if($reply_to_message_id) $array['reply_to_message_id'] = $reply_to_message_id;
 		
 		return $this->POST('sendMessage', $array);

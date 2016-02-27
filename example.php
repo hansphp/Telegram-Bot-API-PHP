@@ -18,18 +18,15 @@ echo '<h1>TEST: '.TEST_ID.'</h1>';
 $BOT = new H_TELEGRAM_BOT(TELEGRAM_TOKEN);
 $BOT->debugOn();
 
-$result = $BOT->getMe();
-print_r($result);
+$result1 = $BOT->getMe();
+print_r($result1);
 
-$result = $BOT->getUpdates(0, 1);
+$result2 = $BOT->getUpdates(0, 1);
 echo '<pre>';
-print_r($result);
+print_r($result2);
 echo '</pre>';
 
-/*
-* The literal 3307982, its example.
-*/
-$result = $BOT->sendMessage(3307982, 'Hola mundo! '.TEST_ID);
+$result3 = $BOT->sendMessage($result2->result[0]->message->chat->id, 'Hola mundo! <i>'.TEST_ID.'</i> visit: https://github.com/hansphp/Telegram-Bot-API-PHP', 'HTML', true, true);
 echo '<pre>';
-print_r($result);
+print_r($result3);
 echo '</pre>';
