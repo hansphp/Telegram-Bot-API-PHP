@@ -94,9 +94,9 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	public function getUpdates($offset = 0, $limit = 100, $timeout = 0){
 		$data = array();
 		
-		if($offset > 0)		$data['offset'] = $offset;
+		if($offset)		$data['offset'] = $offset;
 		if($limit != 100)	$data['limit'] = $limit;
-		if($timeout > 0)	$data['timeout'] = $timeout;
+		if($timeout)	$data['timeout'] = $timeout;
 		
 		return $this->POST('getUpdates', $data);
 	}
@@ -119,9 +119,7 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	public function sendMessage($chat_id, $text, $reply_to_message_id = 0){
 		$array = array('chat_id' => $chat_id, 'text' => $text);
 		
-		if($reply_to_message_id){
-			$array['reply_to_message_id'] = $reply_to_message_id;
-		}
+		if($reply_to_message_id) $array['reply_to_message_id'] = $reply_to_message_id;
 		
 		return $this->POST('sendMessage', $array);
 	}
