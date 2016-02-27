@@ -26,7 +26,7 @@ echo '<pre>';
 print_r($result2);
 echo '</pre>';
 
-$result3 = $BOT->sendMessage($result2->result[0]->message->chat->id, 'Hola mundo! <i>'.TEST_ID.'</i> visit: https://github.com/hansphp/Telegram-Bot-API-PHP', 'HTML', true, true);
+$result3 = $BOT->sendMessage($result2->result[0]->message->chat->id, 'Hola mundo! <i>'.TEST_ID.'</i> visit: https://github.com/hansphp/Telegram-Bot-API-PHP', 'HTML', true, true, $result2->result[0]->message->message_id);
 echo '<pre>';
 print_r($result3);
 echo '</pre>';
