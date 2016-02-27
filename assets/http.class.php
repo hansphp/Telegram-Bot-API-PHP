@@ -20,7 +20,7 @@ class H_HTTP {
 	protected $HOST;
 	protected $PORT;
 	protected $COOKIE = '';
-	protected $DEBUG = true;
+	protected $DEBUG = false;
 	protected $REQUEST_HEADERS; 
 	protected $RESPONSE_HEADERS;
 	protected $RESPONSE;
