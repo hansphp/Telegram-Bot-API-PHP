@@ -101,6 +101,21 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 		return $this->POST('getUpdates', $data);
 	}
 	
+	/**
+	  * Use this method to send text messages. On success, the sent Message is returned.
+	  *
+	  * @since 1.0
+	  *
+	  * @param chat_id $description Unique identifier for the target chat or username of the target channel (in the format @channelusername). Required.
+	  * @param text $description Text of the message to be sent. Required.
+	  * @param parse_mode $description Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message. Optional.
+	  * @param disable_web_page_preview $descriptionDisables link previews for links in this message. Optional.
+	  * @param disable_notification $description TSends the message silently. Optional.
+	  * @param reply_to_message_id $description If the message is a reply, ID of the original message. Optional.
+	  * @param reply_markup $description Additional interface options. Optional.
+	  *
+	  * @return Array of Update objects
+	  */
 	public function sendMessage($chat_id, $text, $reply_to_message_id = 0){
 		$array = array('chat_id' => $chat_id, 'text' => $text);
 		
