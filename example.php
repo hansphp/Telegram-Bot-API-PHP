@@ -11,6 +11,9 @@ define ('TELEGRAM_TOKEN', '123456:ABC-DEF1234EJEMPLO');
 Refierase a: https://core.telegram.org/bots/api#authorizing-your-bot */
 require_once('config.php');
 
+define ('TEST_ID', uniqid());
+
+echo '<h1>TEST: '.TEST_ID.'</h1>';
 
 $BOT = new H_TELEGRAM_BOT(TELEGRAM_TOKEN);
 $BOT->debugOn();
@@ -26,7 +29,7 @@ echo '</pre>';
 /*
 * The literal 3307982, its example.
 */
-$result = $BOT->sendMessage(3307982, 'Hola mundo!');
+$result = $BOT->sendMessage(3307982, 'Hola mundo! '.TEST_ID);
 echo '<pre>';
 print_r($result);
 echo '</pre>';
