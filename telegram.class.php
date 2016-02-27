@@ -56,24 +56,45 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	
 	public function GET($method = 'getMe', $headers = ''){ 
 		parent::GET("/bot{$this->token}/{$method}", $headers);
+		
 		return json_decode($this->RESPONSE);
 	}
 	
 	public function POST($method = '', $postdata = '', $headers = ''){
 		parent::POST("/bot{$this->token}/{$method}", $postdata, $headers);
+		
 		return json_decode($this->RESPONSE);
 	}
 	
 	/* Metodos de Telegram */
+	
+	/**
+	 * A simple method for testing your bot's auth token. Requires no parameters. Returns basic information about the bot in form of a User object.
+	 * @since 1.0
+	 *
+	 * @return User
+	 */
 	public function getMe(){
 		return $this->GET('getMe');
 	}
 	
 	public function getUpdates($offset = 0){
 		$data = array();
+		
 		if($offset > 0){
 			$data['offset'] = $offset;
 		}
+		
 		return $this->POST('getUpdates', $data);
+	}
+	
+	public function sendMessage($chat_id, $text, $reply_to_message_id = 0){
+		$array = array('chat_id' => $chat_id, 'text' => $text);
+		
+		if($reply_to_message_id){
+			$array['reply_to_message_id'] = $reply_to_message_id;
+		}
+		
+		return $this->POST('sendMessage', $array);
 	}
 }
