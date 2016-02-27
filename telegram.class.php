@@ -69,15 +69,22 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	/* Metodos de Telegram */
 	
 	/**
-	 * A simple method for testing your bot's auth token. Requires no parameters. Returns basic information about the bot in form of a User object.
-	 * @since 1.0
-	 *
-	 * @return User
-	 */
+	  * A simple method for testing your bot's auth token. Requires no parameters. Returns basic information about the bot in form of a User object.
+	  * @since 1.0
+	  *
+	  * @return User Object
+	  */
 	public function getMe(){
 		return $this->GET('getMe');
 	}
 	
+	/**
+	  * Use this method to receive incoming updates using long polling (wiki).
+	  * https://en.wikipedia.org/wiki/Push_technology#Long_polling
+	  * @since 1.0
+	  *
+	  * @return Array of Update objects
+	  */
 	public function getUpdates($offset = 0){
 		$data = array();
 		
