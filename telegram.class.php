@@ -311,5 +311,21 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 		
 		return $this->POST('sendLocation', $data);
 	}
+
+	/**
+	  * Use this method when you need to tell the user that something is happening on the bot's side.
+	  *
+	  * @since 1.0
+	  *
+	  * @param chat_id $description Unique identifier for the target chat or username of the target channel (in the format @channelusername). Required.
+	  * @param action $description Type of action to broadcast. Required.
+	  *
+	  * @return Message object
+	  */
+	public function sendChatAction($chat_id, $action){
+		$data = array('chat_id' => $chat_id, 'action' => $action);
+
+		return $this->POST('sendChatAction', $data);
+	}
 }
 
