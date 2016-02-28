@@ -118,14 +118,14 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	  * @return Message object
 	  */
 	public function sendMessage($chat_id, $text, $parse_mode = '', $disable_web_page_preview = false, $disable_notification = false, $reply_to_message_id = 0){
-		$array = array('chat_id' => $chat_id, 'text' => $text);
+		$data = array('chat_id' => $chat_id, 'text' => $text);
 		
-		if(strlen($parse_mode) > 0) $array['parse_mode'] = $parse_mode;
-		if($disable_web_page_preview) $array['disable_web_page_preview'] = 'true';
-		if($disable_notification) $array['disable_notification'] = 'true';
-		if($reply_to_message_id) $array['reply_to_message_id'] = $reply_to_message_id;
+		if(strlen($parse_mode) > 0) $data['parse_mode'] = $parse_mode;
+		if($disable_web_page_preview) $data['disable_web_page_preview'] = 'true';
+		if($disable_notification) $data['disable_notification'] = 'true';
+		if($reply_to_message_id) $data['reply_to_message_id'] = $reply_to_message_id;
 		
-		return $this->POST('sendMessage', $array);
+		return $this->POST('sendMessage', $data);
 	}
 	
 	/**
@@ -151,11 +151,25 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	  *
 	  * @param chat_id $description Unique identifier for the target chat or username of the target channel (in the format @channelusername). Required.
 	  * @param photo $description Photo to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data. Required.
+	  * @param disable_notification $description Sends the message silently. Optional.
+	  * @param reply_to_message_id $description If the message is a reply, ID of the original message. Optional.
+	  * @param reply_markup $description Additional interface options. Optional. --- TODO : Agregar esta funcionalidad.
 	  *
 	  * @return Message object
 	  */
-	public function sendPhoto($chat_id, $photo){
-		$this->upload("/bot{$this->token}/sendPhoto", array('photo'=> $photo), array('chat_id'=> $chat_id));
+	public function sendPhoto($chat_id, $photo, $caption = '',  $disable_notification = false, $reply_to_message_id = 0){
+		$data = array('chat_id' => $chat_id);
+		if(strlen($caption) > 0) $data['caption'] = $caption;
+		if($disable_notification) $data['disable_notification'] = 'true';
+		if($reply_to_message_id) $data['reply_to_message_id'] = $reply_to_message_id;
+		
+		if(strpos($photo, '.') > 0){
+			$this->upload("/bot{$this->token}/sendPhoto", array('photo'=> $photo), $data);	
+		}else{
+			$data['photo'] = $photo;
+			$this->POST('sendPhoto', $data);
+		}
+		
 		return json_decode($this->RESPONSE);
 	}
 }

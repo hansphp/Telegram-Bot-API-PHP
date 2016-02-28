@@ -32,7 +32,7 @@ print_r($result3);
 echo '</pre>';
 
 
-$result4 = $BOT->sendPhoto($result2->result[0]->message->chat->id, 'logoPHP.png');
+$result4 = $BOT->sendPhoto($result2->result[0]->message->chat->id, 'logoPHP.png', 'Lenguaje de programación');
 echo '<pre>';
 print_r($result4);
 echo '</pre>';
