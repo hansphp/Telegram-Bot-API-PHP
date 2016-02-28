@@ -31,8 +31,18 @@ echo '<pre>';
 print_r($result3);
 echo '</pre>';
 
-
 $result4 = $BOT->sendPhoto($result2->result[0]->message->chat->id, 'logoPHP.png', 'Lenguaje de programación');
 echo '<pre>';
 print_r($result4);
+echo '</pre>';
+
+$result5 = $BOT->sendAudio($result2->result[0]->message->chat->id, 'Tono Monkees.mp3');
+echo '<pre>';
+print_r($result5);
+echo '</pre>';
+
+
+$result6 = $BOT->sendDocument($result2->result[0]->message->chat->id, 'Libro contable.xlsx');
+echo '<pre>';
+print_r($result6);
 echo '</pre>';
