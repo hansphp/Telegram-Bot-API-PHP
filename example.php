@@ -22,6 +22,7 @@ $result1 = $BOT->getMe();
 print_r($result1);
 
 $result2 = $BOT->getUpdates(0, 1);
+
 echo '<pre>';
 print_r($result2);
 echo '</pre>';
@@ -45,4 +46,15 @@ echo '</pre>';
 $result6 = $BOT->sendDocument($result2->result[0]->message->chat->id, 'Libro contable.xlsx');
 echo '<pre>';
 print_r($result6);
+echo '</pre>';
+
+/* file_id de Sticker */
+$result7 = $BOT->sendSticker($result2->result[0]->message->chat->id, 'BQADBAADhAADl2uGBKlasxXr2hJxAg');
+echo '<pre>';
+print_r($result7);
+echo '</pre>';
+
+$result8 = $BOT->sendVideo($result2->result[0]->message->chat->id, 'video.mp4');
+echo '<pre>';
+print_r($result8);
 echo '</pre>';

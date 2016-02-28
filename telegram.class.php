@@ -208,7 +208,7 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	  * @since 1.0
 	  *
 	  * @param chat_id $description Unique identifier for the target chat or username of the target channel (in the format @channelusername). Required.
-	  * @param audio $description Audio file to send. You can either pass a file_id as String to resend a photo that is already on the Telegram servers, or upload a new photo using multipart/form-data. Required.
+	  * @param document $description File to send. You can either pass a file_id as String to resend a file that is already on the Telegram servers, or upload a new file using multipart/form-data. Required.
 	  * @param disable_notification $description Sends the message silently. Optional.
 	  * @param reply_to_message_id $description If the message is a reply, ID of the original message. Optional.
 	  * @param reply_markup $description Additional interface options. Optional. --- TODO : Agregar esta funcionalidad.
@@ -231,4 +231,62 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 		return json_decode($this->RESPONSE);
 	}
 
+	/**
+	  * Use this method to send .webp stickers. On success, the sent Message is returned.
+	  *
+	  * @since 1.0
+	  *
+	  * @param chat_id $description Unique identifier for the target chat or username of the target channel (in the format @channelusername). Required.
+	  * @param sticker $description Sticker to send. You can either pass a file_id as String to resend a sticker that is already on the Telegram servers, or upload a new sticker using multipart/form-data. Required.
+	  * @param disable_notification $description Sends the message silently. Optional.
+	  * @param reply_to_message_id $description If the message is a reply, ID of the original message. Optional.
+	  * @param reply_markup $description Additional interface options. Optional. --- TODO : Agregar esta funcionalidad.
+	  *
+	  * @return Message object
+	  */
+	public function sendSticker($chat_id, $sticker, $caption = '',  $disable_notification = false, $reply_to_message_id = 0){
+		$data = array('chat_id' => $chat_id);
+		if(strlen($caption) > 0) $data['caption'] = $caption;
+		if($disable_notification) $data['disable_notification'] = 'true';
+		if($reply_to_message_id) $data['reply_to_message_id'] = $reply_to_message_id;
+		
+		if(strpos($sticker, '.') > 0){
+			$this->upload("/bot{$this->token}/sendSticker", array('sticker' => $sticker), $data);	
+		}else{
+			$data['sticker'] = $sticker;
+			$this->POST('sendSticker', $data);
+		}
+		
+		return json_decode($this->RESPONSE);
+	}
+
+	/**
+	  * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
+	  *
+	  * @since 1.0
+	  *
+	  * @param chat_id $description Unique identifier for the target chat or username of the target channel (in the format @channelusername). Required.
+	  * @param video $description Video to send. You can either pass a file_id as String to resend a video that is already on the Telegram servers, or upload a new video file using multipart/form-data. Required.
+	  * @param disable_notification $description Sends the message silently. Optional.
+	  * @param reply_to_message_id $description If the message is a reply, ID of the original message. Optional.
+	  * @param reply_markup $description Additional interface options. Optional. --- TODO : Agregar esta funcionalidad.
+	  *
+	  * @return Message object
+	  */
+	public function sendVideo($chat_id, $video, $caption = '',  $disable_notification = false, $reply_to_message_id = 0){
+		$data = array('chat_id' => $chat_id);
+		if(strlen($caption) > 0) $data['caption'] = $caption;
+		if($disable_notification) $data['disable_notification'] = 'true';
+		if($reply_to_message_id) $data['reply_to_message_id'] = $reply_to_message_id;
+		
+		if(strpos($video, '.') > 0){
+			$this->upload("/bot{$this->token}/sendVideo", array('video'=> $video), $data);	
+		}else{
+			$data['video'] = $video;
+			$this->POST('sendVideo', $data);
+		}
+		
+		return json_decode($this->RESPONSE);
+	}
 }
+
