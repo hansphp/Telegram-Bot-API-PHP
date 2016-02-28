@@ -58,3 +58,10 @@ $result8 = $BOT->sendVideo($result2->result[0]->message->chat->id, 'video.mp4');
 echo '<pre>';
 print_r($result8);
 echo '</pre>';
+
+
+$result8 = $BOT->sendLocation($result2->result[0]->message->chat->id, 16.8573499, -99.8797403);
+echo '<pre>';
+print_r($result8);
+echo '</pre>';
+

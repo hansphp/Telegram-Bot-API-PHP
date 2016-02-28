@@ -288,5 +288,28 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 		
 		return json_decode($this->RESPONSE);
 	}
+	
+	/**
+	  * Use this method to send point on the map. On success, the sent Message is returned.
+	  *
+	  * @since 1.0
+	  *
+	  * @param chat_id $description Unique identifier for the target chat or username of the target channel (in the format @channelusername). Required.
+	  * @param latitude $description Latitude of location. Required.
+	  * @param longitude $description Longitude of location. Required.
+	  * @param disable_notification $description Sends the message silently. Optional.
+	  * @param reply_to_message_id $description If the message is a reply, ID of the original message. Optional.
+	  * @param reply_markup $description Additional interface options. Optional. --- TODO : Agregar esta funcionalidad.
+	  *
+	  * @return Message object
+	  */
+	public function sendLocation($chat_id, $latitude, $longitude,  $disable_notification = false, $reply_to_message_id = 0){
+		$data = array('chat_id' => $chat_id, 'latitude' => $latitude, 'longitude' => $longitude);
+
+		if($disable_notification) $data['disable_notification'] = 'true';
+		if($reply_to_message_id) $data['reply_to_message_id'] = $reply_to_message_id;
+		
+		return $this->POST('sendLocation', $data);
+	}
 }
 
