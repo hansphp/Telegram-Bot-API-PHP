@@ -34,12 +34,12 @@ SOFTWARE.
 */
 //  //    		Telegram-Bot-API-PHP Class
 ///////////////////////////////////////////////////////////////////
-//           Autor : Hans Von Herrera Ortega
-//         Version : 1.0
-//	  	  Requiere : PHP 5.3+ 
-//            Bugs : hans.php@gmail.com
-//          GitHub : https://github.com/hansphp/Telegram-Bot-API-PHP
-//	  Designed for : https://core.telegram.org/api
+//            Autor : Hans Von Herrera Ortega
+//          Version : 1.0
+//	   Requiere : PHP 5.3+ 
+//             Bugs : hans.php@gmail.com
+//	     GitHub : https://github.com/hansphp/Telegram-Bot-API-PHP
+//	Designed to : https://core.telegram.org/api
 
 class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	
