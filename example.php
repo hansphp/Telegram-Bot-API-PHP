@@ -71,3 +71,13 @@ $result9 = $BOT->sendChatAction($result2->result[0]->message->chat->id,'upload_d
 echo '<pre>';
 print_r($result9);
 echo '</pre>';
+
+$result10 = $BOT->getUserProfilePhotos($result2->result[0]->message->from->id, 0 , 1);
+echo '<pre>';
+print_r($result10);
+echo '</pre>';
+
+$result11 = $BOT->getFile($result10->result->photos[0][2]->file_id);
+echo '<pre>';
+print_r($result11);
+echo '</pre>';

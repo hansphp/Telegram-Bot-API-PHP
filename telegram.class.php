@@ -327,5 +327,37 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 
 		return $this->POST('sendChatAction', $data);
 	}
-}
 
+	/**
+	  * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
+	  *
+	  * @since 1.0
+	  *
+	  * @param user_id $description Unique identifier of the target user. Required.
+	  * @param offset $description Sequential number of the first photo to be returned. By default, all photos are returned. Optional.
+	  *
+	  * @return Message object
+	  */
+	public function getUserProfilePhotos($user_id, $offset = 0, $limit = 100){
+		$data = array('user_id' => $user_id);
+		
+		if($offset)		$data['offset'] = $offset;
+		if($limit != 100)	$data['limit'] = $limit;
+		
+		return $this->POST('getUserProfilePhotos', $data);
+	}
+	
+	/**
+	  * Use this method to get basic info about a file and prepare it for downloading.
+	  * downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response.
+	  * @since 1.0
+	  *
+	  * @param file_id $description File identifier to get info about. Required.
+	  *
+	  * @return File object
+	  */
+	public function getFile($file_id){
+		return $this->POST('getFile', array('file_id' => $file_id));
+	}
+	
+}
