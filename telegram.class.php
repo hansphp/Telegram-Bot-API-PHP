@@ -360,4 +360,19 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 		return $this->POST('getFile', array('file_id' => $file_id));
 	}
 	
+	/**
+	  * Use this method to get basic info about a file and prepare it for downloading.
+	  * downloaded via the link https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from the response.
+	  * @since 1.0
+	  *
+	  * @param file_id $description File identifier to get info about. Required.
+	  *
+	  * @return File object
+	  */
+	public function downloadFile($file_id){
+		$file_path = $this->getFile($file_id)->result->file_path;
+		parent::GET("/file/bot{$this->token}/{$file_path}");
+		return $this->RESPONSE();
+	}
+	
 }

@@ -77,7 +77,14 @@ echo '<pre>';
 print_r($result10);
 echo '</pre>';
 
-$result11 = $BOT->getFile($result10->result->photos[0][2]->file_id);
+$result11 = $BOT->getFile($result10->result->photos[0][0]->file_id);
 echo '<pre>';
 print_r($result11);
 echo '</pre>';
+
+$result12 = $BOT->downloadFile($result10->result->photos[0][0]->file_id);
+echo '<pre>';
+echo '<img src="data:image/jpg;base64,'.base64_encode($result12).'">';
+
+echo '</pre>';
+
