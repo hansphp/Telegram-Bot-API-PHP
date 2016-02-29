@@ -86,7 +86,6 @@ class H_HTTP {
 		if(!empty($fp)){
 			$this->REQUEST_HEADERS	=	"$method $path HTTP/1.1".CRLF.
 						'Host: '.$this->HOST.CRLF;
-			$this->REQUEST_HEADERS.=		"User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; es-MX; rv:1.9.2.28) https://github.com/hansphp/Telegram-Bot-API-PHP".CRLF;
 			$this->REQUEST_HEADERS.=		"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8".CRLF;
 			
 			/* Verify cookies */

@@ -44,6 +44,7 @@ SOFTWARE.
 class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	
 	protected $token;
+	protected $agent = "User-Agent: Mozilla/5.0 (Telegram-Bot-API-PHP; es-MX;)	https://github.com/hansphp/Telegram-Bot-API-PHP \r\n";
 	
 	function __construct($token)
 	{
@@ -56,13 +57,13 @@ class H_TELEGRAM_BOT extends H_FILE_UPLOAD{
 	}
 	
 	public function GET($method = 'getMe', $headers = ''){ 
-		parent::GET("/bot{$this->token}/{$method}", $headers);
+		parent::GET("/bot{$this->token}/{$method}", $this->agent.$headers);
 		
 		return json_decode($this->RESPONSE);
 	}
 	
 	public function POST($method = '', $postdata = '', $headers = ''){
-		parent::POST("/bot{$this->token}/{$method}", $postdata, $headers);
+		parent::POST("/bot{$this->token}/{$method}", $postdata, $this->agent.$headers);
 		
 		return json_decode($this->RESPONSE);
 	}
